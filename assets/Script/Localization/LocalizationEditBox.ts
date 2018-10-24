@@ -1,4 +1,4 @@
-import LocalizationComponent from "./LocailzationComponent";
+import LocalizationComponent from "./LocalizationComponent";
 import LocalizationManager, { LocalizationType } from "./LocalizationManager";
 import LocalizationAsset from "./LocalizationAsset";
 import Logger from "../Logger/Logger";

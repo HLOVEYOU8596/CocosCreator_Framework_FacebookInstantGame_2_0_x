@@ -36,6 +36,11 @@ export default class MsgDefine {
 	static hotUpdate_faild="hotUpdate_faild";//热更新失败
 	static hotUpdate_skip="hotUpdate_skip"//跳过热更新 包括找不到manifest文件 已经是最新版 平台不支持等等
 
-	
-	
+	//ui
+	static preLoadUIPanelFinish="preLoadUIPanelFinish";
+
+	//facebook
+	static contextInfoLoadFinish="contextInfoLoadFinish";
+	static rankLoadFinish="rankLoadFinish";
+	static loadDataFromFBFinish="loadDataFromFBFinish";
 }

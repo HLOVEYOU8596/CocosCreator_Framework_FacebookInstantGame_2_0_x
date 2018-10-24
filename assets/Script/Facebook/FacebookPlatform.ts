@@ -1,7 +1,7 @@
-import LocalizationComponent from "./LocalizationComponent";
-import LocalizationManager, { LocalizationType } from "./LocalizationManager";
-import LocalizationAsset from "./LocalizationAsset";
+import Facebook from "./Facebook";
 import Logger from "../Logger/Logger";
+import MsgSystem from "../MsgSystem/MsgSystem";
+import MsgDefine from "../MsgSystem/MsgDefine";
 
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -15,8 +15,8 @@ import Logger from "../Logger/Logger";
 
 const {ccclass, property} = cc._decorator;
 
-@ccclass
-export default class LocalizationImg extends LocalizationComponent {
+
+export default class FacebookPlatform {
 
     //属性声明
     // @property(cc.Label)     // 使用 property 装饰器声明属性，括号里是属性类型，装饰器里的类型声明主要用于编辑器展示
@@ -30,21 +30,16 @@ export default class LocalizationImg extends LocalizationComponent {
     // })
     // text: string = 'hello';
 
-    @property(cc.Sprite)
-    _sprite:cc.Sprite=null;
-
+    contextId: string = null;
+    contextType: string = "";
+    local:string="";
+    lanCode: string = "";
+    platform: string = "";
+    SDKVersion:string="";
     
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () 
-    {
-        this._sprite=this.getComponent(cc.Sprite);
-        if (this._sprite==null) 
-        {
-            console.error("Wrong Localization Component, can't find Sprite");
-            
-        }
-    }
+    // onLoad () {}
     // onEnable() {}
     // start() {}
     // update(dt) {}
@@ -52,22 +47,33 @@ export default class LocalizationImg extends LocalizationComponent {
     // onDisable() {}
     // onDestroy() {}
 
-    SetTerm(key:string,argTable:any=null)
+    Init()
     {
-        this.key=key;
-        if (!LocalizationManager.instance.localizationSource.ContainsKey(key)) 
+        if(!Facebook.IsFBInit())
         {
-            Logger.warn("localization can't find key:"+key+"--"+this.name);
             return;
         }
-        let asset:LocalizationAsset=LocalizationManager.instance.localizationSource.TryGetValue(key);
-        if (asset.assetType==LocalizationType.TEXTRUE) 
+
+        this.contextType=FBInstant.context.getType();
+        if (this.contextType=="SOLO") 
         {
-            this._sprite.spriteFrame=asset.spriteFrame;    
+            this.contextId=FBInstant.player.getID()+"_SOLO";    
         }
         else
         {
-            Logger.warn("Localization asset type error");
+            this.contextId=FBInstant.context.getID();
         }
+        this.local=FBInstant.getLocale();
+        this.lanCode=this.local.substr(0,2);
+        this.platform=FBInstant.getPlatform();
+        this.SDKVersion=FBInstant.getSDKVersion();
+        Logger.log("contextType:"+this.contextType);
+        Logger.log("contextId:"+this.contextId);
+        Logger.log("local:"+this.local);
+        Logger.log("lanCode:"+this.lanCode);
+        Logger.log("SDKVersion:"+this.SDKVersion);
+
+        //发送消息
+        MsgSystem.GetInstance().PostMsg(MsgDefine.contextInfoLoadFinish);
     }
 }

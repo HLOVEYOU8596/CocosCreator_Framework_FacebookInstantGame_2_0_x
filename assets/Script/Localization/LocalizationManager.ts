@@ -1,5 +1,5 @@
 
-import LocalizationComponent from "./LocailzationComponent";
+import LocalizationComponent from "./LocalizationComponent";
 import LocalizationAsset from "./LocalizationAsset";
 import Logger from "../Logger/Logger";
 import HttpRequest from "../Net/HttpRequest";

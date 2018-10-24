@@ -1,7 +1,5 @@
-import LocalizationComponent from "./LocalizationComponent";
-import LocalizationManager, { LocalizationType } from "./LocalizationManager";
-import LocalizationAsset from "./LocalizationAsset";
-import Logger from "../Logger/Logger";
+import CSDictionary from "../Utility/CSDictionary";
+
 
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -15,8 +13,8 @@ import Logger from "../Logger/Logger";
 
 const {ccclass, property} = cc._decorator;
 
-@ccclass
-export default class LocalizationImg extends LocalizationComponent {
+
+export default class FacebookPlayerPicDic  {
 
     //属性声明
     // @property(cc.Label)     // 使用 property 装饰器声明属性，括号里是属性类型，装饰器里的类型声明主要用于编辑器展示
@@ -30,21 +28,13 @@ export default class LocalizationImg extends LocalizationComponent {
     // })
     // text: string = 'hello';
 
-    @property(cc.Sprite)
-    _sprite:cc.Sprite=null;
 
+    //玩家头像目录
+    static playerPicMap: CSDictionary<string, cc.SpriteFrame> = new CSDictionary<string, cc.SpriteFrame>();//<playerId,头像>
     
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () 
-    {
-        this._sprite=this.getComponent(cc.Sprite);
-        if (this._sprite==null) 
-        {
-            console.error("Wrong Localization Component, can't find Sprite");
-            
-        }
-    }
+    // onLoad () {}
     // onEnable() {}
     // start() {}
     // update(dt) {}
@@ -52,22 +42,22 @@ export default class LocalizationImg extends LocalizationComponent {
     // onDisable() {}
     // onDestroy() {}
 
-    SetTerm(key:string,argTable:any=null)
+    static AddToPlayerPicDic(playerID:string,playerPicUrl:string)
     {
-        this.key=key;
-        if (!LocalizationManager.instance.localizationSource.ContainsKey(key)) 
+        if (!FacebookPlayerPicDic.playerPicMap.ContainsKey(playerID)) 
         {
-            Logger.warn("localization can't find key:"+key+"--"+this.name);
-            return;
+            let pic = new cc.SpriteFrame();
+            FacebookPlayerPicDic.playerPicMap.Add(playerID, pic);
+            cc.loader.load(playerPicUrl, function (err, texture)
+            {
+                let playerPic = FacebookPlayerPicDic.playerPicMap.TryGetValue(playerID);
+                playerPic.setTexture(texture);
+            }.bind(this));
         }
-        let asset:LocalizationAsset=LocalizationManager.instance.localizationSource.TryGetValue(key);
-        if (asset.assetType==LocalizationType.TEXTRUE) 
-        {
-            this._sprite.spriteFrame=asset.spriteFrame;    
-        }
-        else
-        {
-            Logger.warn("Localization asset type error");
-        }
+    }
+
+    static GetPlayerPic(id:string)
+    {
+        return FacebookPlayerPicDic.playerPicMap.TryGetValue(id);
     }
 }

@@ -1,7 +1,4 @@
-import LocalizationComponent from "./LocalizationComponent";
-import LocalizationManager, { LocalizationType } from "./LocalizationManager";
-import LocalizationAsset from "./LocalizationAsset";
-import Logger from "../Logger/Logger";
+import Facebook from "./Facebook";
 
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
@@ -16,7 +13,7 @@ import Logger from "../Logger/Logger";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class LocalizationImg extends LocalizationComponent {
+export default class FacebookAnalytics extends cc.Component {
 
     //属性声明
     // @property(cc.Label)     // 使用 property 装饰器声明属性，括号里是属性类型，装饰器里的类型声明主要用于编辑器展示
@@ -30,21 +27,36 @@ export default class LocalizationImg extends LocalizationComponent {
     // })
     // text: string = 'hello';
 
-    @property(cc.Sprite)
-    _sprite:cc.Sprite=null;
+    //通用
+    static watchPicAd:string="watchPicAd";//观看插页广告
+    static watchVideoAd:string="watchVideoAd";//观看视频广告
+    static noWatchPicAd:string="noWatchPicAd";//不观看插页广告
+    static noWatchVideoAd:string="noWatchVideoAd";//不观看视频广告
 
+    static shareGame:string="shareGame";//分享游戏
+    static shareGameSuccess:string="shareGameSuccess";
+    static shareGameFail:string="shareGameFail";
+    static rejectShare:string="rejectShare";
+
+    static inviteFriend:string="inviteFriend";//邀请好友
+    static inviteFriendSuccess:string="inviteFriendSuccess";
+    static inviteFriendFail:string="inviteFriendFail";
+
+    static addToDesktopSuccess:string="addToDeskTopSuccess"//将添加到桌面
+    static addToDesktopFail:string="addToDesktopFail";//添加桌面失败
+
+    static showPlayWithFriendWindow:string="showPlayWithFriendWindow";
+
+    static clickRecommendGame:string="clickRecommendGame";
+    static showRecommendWindow:string="showRecommendWindow";
+
+    static buySkin:string="buySkin";
+
+    static startPk:string="startPk";
     
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () 
-    {
-        this._sprite=this.getComponent(cc.Sprite);
-        if (this._sprite==null) 
-        {
-            console.error("Wrong Localization Component, can't find Sprite");
-            
-        }
-    }
+    // onLoad () {}
     // onEnable() {}
     // start() {}
     // update(dt) {}
@@ -52,22 +64,5 @@ export default class LocalizationImg extends LocalizationComponent {
     // onDisable() {}
     // onDestroy() {}
 
-    SetTerm(key:string,argTable:any=null)
-    {
-        this.key=key;
-        if (!LocalizationManager.instance.localizationSource.ContainsKey(key)) 
-        {
-            Logger.warn("localization can't find key:"+key+"--"+this.name);
-            return;
-        }
-        let asset:LocalizationAsset=LocalizationManager.instance.localizationSource.TryGetValue(key);
-        if (asset.assetType==LocalizationType.TEXTRUE) 
-        {
-            this._sprite.spriteFrame=asset.spriteFrame;    
-        }
-        else
-        {
-            Logger.warn("Localization asset type error");
-        }
-    }
+    
 }

@@ -1,8 +1,3 @@
-import LocalizationComponent from "./LocalizationComponent";
-import LocalizationManager, { LocalizationType } from "./LocalizationManager";
-import LocalizationAsset from "./LocalizationAsset";
-import Logger from "../Logger/Logger";
-
 // Learn TypeScript:
 //  - [Chinese] http://docs.cocos.com/creator/manual/zh/scripting/typescript.html
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/typescript.html
@@ -16,7 +11,7 @@ import Logger from "../Logger/Logger";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class LocalizationImg extends LocalizationComponent {
+export default class FacebookPlayerInfoInRank  {
 
     //属性声明
     // @property(cc.Label)     // 使用 property 装饰器声明属性，括号里是属性类型，装饰器里的类型声明主要用于编辑器展示
@@ -30,44 +25,25 @@ export default class LocalizationImg extends LocalizationComponent {
     // })
     // text: string = 'hello';
 
-    @property(cc.Sprite)
-    _sprite:cc.Sprite=null;
+    playerId:string;
+    playerName:string;
+    playerPicUrl:string;
+    playerPic:cc.SpriteFrame=new cc.SpriteFrame();
+    playerScore:number;
+    playerRank:number;
+    playerExtraData:string;
+    lastUpdateTime:number;//entry.getTimestamp()
+
+
 
     
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () 
-    {
-        this._sprite=this.getComponent(cc.Sprite);
-        if (this._sprite==null) 
-        {
-            console.error("Wrong Localization Component, can't find Sprite");
-            
-        }
-    }
+    // onLoad () {}
     // onEnable() {}
     // start() {}
     // update(dt) {}
     // lateUpdate(dt) {}
     // onDisable() {}
     // onDestroy() {}
-
-    SetTerm(key:string,argTable:any=null)
-    {
-        this.key=key;
-        if (!LocalizationManager.instance.localizationSource.ContainsKey(key)) 
-        {
-            Logger.warn("localization can't find key:"+key+"--"+this.name);
-            return;
-        }
-        let asset:LocalizationAsset=LocalizationManager.instance.localizationSource.TryGetValue(key);
-        if (asset.assetType==LocalizationType.TEXTRUE) 
-        {
-            this._sprite.spriteFrame=asset.spriteFrame;    
-        }
-        else
-        {
-            Logger.warn("Localization asset type error");
-        }
-    }
 }

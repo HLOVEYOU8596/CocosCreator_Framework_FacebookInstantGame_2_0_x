@@ -1,4 +1,4 @@
-import LocalizationComponent from "./LocailzationComponent";
+import LocalizationComponent from "./LocalizationComponent";
 import LocalizationManager, { LocalizationType } from "./LocalizationManager";
 import LocalizationAsset from "./LocalizationAsset";
 import Logger from "../Logger/Logger";
@@ -17,7 +17,7 @@ import Logger from "../Logger/Logger";
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class LocalizationRichText extends LocalizationComponent {
+export default class LocalizationLable extends LocalizationComponent {
 
     //属性声明
     // @property(cc.Label)     // 使用 property 装饰器声明属性，括号里是属性类型，装饰器里的类型声明主要用于编辑器展示
@@ -31,8 +31,8 @@ export default class LocalizationRichText extends LocalizationComponent {
     // })
     // text: string = 'hello';
 
-    @property(cc.RichText)
-    _lable:cc.RichText=null;
+    @property(cc.Label)
+    _lable:cc.Label=null;
 
 
 
@@ -42,10 +42,10 @@ export default class LocalizationRichText extends LocalizationComponent {
 
     onLoad () 
     {
-        this._lable=this.getComponent(cc.RichText);
+        this._lable=this.getComponent(cc.Label);
         if (this._lable==null) 
         {
-            console.error("Wrong Localization Component, can't find Lable");
+            Logger.error("Wrong Localization Component, can't find Lable");
             
         }
     }
@@ -58,7 +58,6 @@ export default class LocalizationRichText extends LocalizationComponent {
 
     SetTerm(key:string,argTable:any=null)
     {
-
         this.key=key;
         if (!LocalizationManager.instance.localizationSource.ContainsKey(key)) 
         {
@@ -102,9 +101,12 @@ export default class LocalizationRichText extends LocalizationComponent {
         if (this._lable!=null) 
         {
             this._lable.font=LocalizationManager.instance.fontDic[LocalizationManager.instance.usingLanCode];
+            if (this._lable.font==null) 
+            {
+                this._lable.isSystemFontUsed=true;
+            }
         }
         this.SetTerm(this.key)
     }
-
     
 }
