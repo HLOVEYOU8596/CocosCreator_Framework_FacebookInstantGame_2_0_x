@@ -1,0 +1,13 @@
+[
+    {"akey":"rankPanel_friends","atype":"string","content":"好友排行"},
+    {"akey":"rankPanel_global","atype":"string","content":"全球排行"},
+    {"akey":"recommendPanel_title","atype":"string","content":"试试其他有趣的游戏吧"},
+    {"akey":"tips_buyConfirm","atype":"string","content":"<color=#ffffff>您确认要购买新的人物吗?</color>"},
+    {"akey":"tips_noEnoughMoney","atype":"string","content":"<color=#ffffff>您没有足够的金币</color>"},
+    {"akey":"tips_toShare","atype":"string","content":"<color=#ffffff>您获得了惊人的成绩，是否要向好友炫耀一下？</color>"},
+    {"akey":"tips_watchVideo","atype":"string","content":"<color=#ffffff>您是否要观看视频，这能让您获得<color=#feec00>3-10</color>倍的金币奖励？<br/>如果您改变了主意，可以点击下面的宝箱。</color>"},
+    {"akey":"tips_reward","atype":"string","content":"<color=#ffffff>恭喜! <br/>您获得了<color=#feec00>{}</color>倍的金币奖励。</color>"},
+    {"akey":"tips_invite","atype":"string","content":"<color=#ffffff>邀请一个新的好友一起游戏,您就能获得一个新的游戏角色</color>"},
+    {"akey":"tips_getNewSkin","atype":"string","content":"<color=#ffffff>恭喜! <br/>您获得了1个新的角色。</color>"},
+    {"akey":"tips_inviteFailed","atype":"string","content":"<color=#ffffff>抱歉! <br/>邀请失败,请再玩一局后再尝试邀请其他好友。</color>"}
+]

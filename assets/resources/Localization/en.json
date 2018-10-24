@@ -1,0 +1,13 @@
+[
+    {"akey":"rankPanel_friends","atype":"string","content":"Friends"},
+    {"akey":"rankPanel_global","atype":"string","content":"Global"},
+    {"akey":"recommendPanel_title","atype":"string","content":"Try other interesting games"},
+    {"akey":"tips_buyConfirm","atype":"string","content":"<color=#ffffff>Do you want to buy the new skin?</color>"},
+    {"akey":"tips_noEnoughMoney","atype":"string","content":"<color=#ffffff>You have not enough money.</color>"},
+    {"akey":"tips_toShare","atype":"string","content":"<color=#ffffff>You got a great score. Do you want to show off to your friends?</color>"},
+    {"akey":"tips_watchVideo","atype":"string","content":"<color=#ffffff>Do you want to watch the video which will give you <color=#feec00> 3-10 </color> times coin reward? <br/>If you change your mind, you can click on the treasure chest below.</color>"},
+    {"akey":"tips_reward","atype":"string","content":"<color=#ffffff>Congratulations!<br/>You have won <color=#feec00>{}</color> times coins.</color>"},
+    {"akey":"tips_invite","atype":"string","content":"<color=#ffffff>Invite a new friend to play together and you will get a new game character.</color>"},
+    {"akey":"tips_getNewSkin","atype":"string","content":"<color=#ffffff>Congratulations! <br/>You get a new game character</color>"},
+    {"akey":"tips_inviteFailed","atype":"string","content":"<color=#ffffff>Invite failed! <br/>Please try to invite other friend next time</color>"}
+]

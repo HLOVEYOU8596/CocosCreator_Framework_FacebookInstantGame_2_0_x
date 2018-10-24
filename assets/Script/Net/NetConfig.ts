@@ -13,7 +13,6 @@
 
  export class NetConfig
  {
-    
     static httpRequestTryTime:number=2;//请求尝试次数
     static httpGetTimeout: number = 3000;
     static httpPostTimeout: number = 5000;
@@ -21,5 +20,10 @@
     static httpDeleteTimeout:number = 5000;
     static wsUrl: string = "ws://118.25.40.163:8088";
     static httpUrl: string = "http://www.baidu.com";
+ }
+
+ export class GameUrl
+ {
+     static getLocalizationAsset="";
  }
 
