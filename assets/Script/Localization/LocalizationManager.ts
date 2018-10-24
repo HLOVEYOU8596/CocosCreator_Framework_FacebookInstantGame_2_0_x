@@ -66,9 +66,8 @@ export default class LocalizationManager extends cc.Component
     //当前正在使用的多语言组件对象
     localiztionComponentList: Array<LocalizationComponent> = new Array<LocalizationComponent>();
 
-    loadingLanCode:string="";
-    loadingModuleName:string="";
-    usingLanCode:string="";
+    loadingLanCode:string="";//正在加载的语言
+    usingLanCode:string="";//正在使用的语言
 
     isLoadBasePackage:boolean=true;
 
@@ -121,29 +120,13 @@ export default class LocalizationManager extends cc.Component
         }
     }
 
-    //获取基础语言包-没有获取到可用url前的本地基础语言包
-    GetBasePackage(laneCode:string)
-    {
-        this.isLoadBasePackage=true;
-        let file=this.localLanguagePackageSourceUrl+"/"+laneCode+"_base";
-        this.loadingModuleName="base";
-        cc.loader.loadRes(file,function(err,json){
-            if (err) {
-                Logger.error("-------------load local language file error---------------");
-                Logger.error(err);  
-                this.GetBasePackage(this.defaultLanguage);     
-            }
-            this.OnGetPackageOK(json);
-        }.bind(this));
-    }
 
 
     //获取服务器上的语言包
-    GetRemoteLocalizationPackage(languageName: string,moduleName:string)
+    GetRemoteLocalizationPackage(languageName: string)
     {
         this.isLoadBasePackage=false;
-        this.loadingModuleName=moduleName;
-        let url: string = NetConfig.httpUrl + GameUrl.getLocalizationAsset + languageName + "_"+moduleName+".json";
+        let url: string = NetConfig.httpUrl + GameUrl.getLocalizationAsset + languageName +".json";
         HttpRequest.GetInstance().LoadRemoteJson(url, null, this.OnGetPackageOK.bind(this), this.OnGetPackageFail.bind(this));
     }
 
@@ -151,7 +134,7 @@ export default class LocalizationManager extends cc.Component
     {
         let self = this;
         //this.localizationSource.clear();
-        let jsonData=json;
+        let jsonData=json.json;
         let totalKeyCount: number = jsonData.length;
         let loadedCount: number = 0;
         for (let i = 0; i < totalKeyCount; i++)

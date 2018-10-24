@@ -32,12 +32,6 @@ export enum LogLevel
 export default class Logger
 {
 
-    // static isShowError: boolean = true;
-    // static isShowWarn: boolean = true;
-    // static isShowLog: boolean = true;
-    // static isShowDebug: boolean = true;
-    // static isShowInfo: boolean = true;
-
     static curLevel = LogLevel.Debug;
     private static levelDesc: string[] = ["DEBUG", "LOG", "INFO", "WARN", "ERROR"];
 
@@ -50,50 +44,35 @@ export default class Logger
     static error(err?: any, ...optionalParams: any[])
     {
         Logger.myLog(LogLevel.Error, err, ...optionalParams);
-        // if (Logger.isShowError)
-        // {
-        //     console.error(err, ...optionalParams);
-        // }
+        
     }
 
     // 白底黄字
     static warn(warn?: any, ...optionalParams: any[])
     {
         Logger.myLog(LogLevel.Warn, warn, ...optionalParams);
-        // if (Logger.isShowWarn)
-        // {
-        //     console.warn(warn, ...optionalParams)
-        // }
+        
     }
 
     // 白底黑字
     static log(log?: any, ...optionalParams: any[])
     {
         Logger.myLog(LogLevel.Log, log, ...optionalParams);
-        // if (Logger.isShowLog)
-        // {
-        //     console.log(log, ...optionalParams)
-        // }
+        
     }
 
     // 黄底黄字
     static debug(debug?: any, ...optionalParams: any[])
     {
         Logger.myLog(LogLevel.Debug, debug, ...optionalParams);
-        // if (Logger.isShowLog)
-        // {
-        //     console.debug(log, ...optionalParams)
-        // }
+        
     }
 
     // 白底紫字
     static info(info?: any, ...optionalParams: any[])
     {
         Logger.myLog(LogLevel.Info, info, ...optionalParams);
-        // if (Logger.isShowLog)
-        // {
-        //     console.info(log, ...optionalParams)
-        // }
+        
     }
 
     private static myLog(level: LogLevel, msg?: any, ...optionalParams: any[])
