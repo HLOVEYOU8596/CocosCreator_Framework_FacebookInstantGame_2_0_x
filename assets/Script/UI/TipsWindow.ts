@@ -75,20 +75,20 @@ export default class TipsWindow extends PanelBase {
     {
         //this.tipInfoLocal=this.node.getChildByName("tips").getComponent(LocalizationRichText);
 
-        this.closeButton.node.on("click",this.OnCloseClick.bind(this));
-        this.confirmButton.node.on("click",this.OnConfirmClick.bind(this));
-        this.okButton.node.on("click",this.OnOkClick.bind(this));
-        this.cancelButton.node.on("click",this.OnCancelClick.bind(this));
+        // this.closeButton.node.on("click",this.OnCloseClick.bind(this));
+        // this.confirmButton.node.on("click",this.OnConfirmClick.bind(this));
+        // this.okButton.node.on("click",this.OnOkClick.bind(this));
+        // this.cancelButton.node.on("click",this.OnCancelClick.bind(this));
 
-        this.enterCallback=null;
-        this.exitCallback=null;
-        this.okCallback=null;
-        this.closeCallback=null;
-        this.cancelCallback=null;
-        this.confirmCallback=null;
+        // this.enterCallback=null;
+        // this.exitCallback=null;
+        // this.okCallback=null;
+        // this.closeCallback=null;
+        // this.cancelCallback=null;
+        // this.confirmCallback=null;
 
-        this.appearAction=cc.scaleTo(0.5,1,1).easing(cc.easeBackOut());
-        this.disappearAction=cc.sequence(cc.scaleTo(0.3,0,0),cc.callFunc(function(){this.SetActive(false)}.bind(this)));
+        // this.appearAction=cc.scaleTo(0.5,1,1).easing(cc.easeBackOut());
+        // this.disappearAction=cc.sequence(cc.scaleTo(0.3,0,0),cc.callFunc(function(){this.SetActive(false)}.bind(this)));
     }
     // onEnable() {}
     // start() {}

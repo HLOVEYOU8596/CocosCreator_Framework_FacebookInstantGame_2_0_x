@@ -226,18 +226,18 @@ export default class LocalizationManager extends cc.Component
         //弹出窗口提示--获取远程语言包失败,将默认使用英语
 
         //读取本地默认语言
-        this.GetLocalLanguagePackage(this.defaultLanguage,this.loadingModuleName);
+        this.GetLocalLanguagePackage(this.defaultLanguage);
 
     }
 
     //获取本地的语言包
-    GetLocalLanguagePackage(languageName: string,moduleName:string)
+    GetLocalLanguagePackage(languageName: string)
     {
         //显示正在切换语言提示
         //UIManager.instance.ShowTipsWindow(TipsWindowStyle.NO_BUTTON,"@tip@tipWindow@changeLanguage");
 
         var self = this;
-        let url = this.localLanguagePackageSourceUrl + "/" + languageName+"_"+moduleName;
+        let url = this.localLanguagePackageSourceUrl + "/" + languageName;
         cc.loader.loadRes(url, function (err, json)
         {
             if (err)
@@ -245,8 +245,8 @@ export default class LocalizationManager extends cc.Component
                 Logger.error("-------------load local language file error---------------");
                 Logger.error(err);
 
-                Logger.log("load default language:"+this.defaultLanguage+"_"+moduleName);
-                this.GetLocalLanguagePackage(this.defaultLanguage,moduleName);      
+                Logger.log("load default language:"+this.defaultLanguage);
+                this.GetLocalLanguagePackage(this.defaultLanguage);      
             }
             else
             {

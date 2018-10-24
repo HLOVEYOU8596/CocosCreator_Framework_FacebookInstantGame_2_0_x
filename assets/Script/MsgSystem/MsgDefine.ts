@@ -43,4 +43,7 @@ export default class MsgDefine {
 	static contextInfoLoadFinish="contextInfoLoadFinish";
 	static rankLoadFinish="rankLoadFinish";
 	static loadDataFromFBFinish="loadDataFromFBFinish";
+
+	static nodePoolInitFinish="nodePoolInitFinish";
+	static userInfoLoadFinish="userInfoLoadFinish";
 }

@@ -33,49 +33,7 @@ export default class StartPanel extends PanelBase
     // text: string = 'hello';
 
 
-    @property(cc.Button)
-    startButton: cc.Button = null;
-    @property(cc.Button)
-    shopButton: cc.Button = null;
-    @property(cc.Button)
-    rankButton: cc.Button = null;
-    @property(cc.Button)
-    shareButton: cc.Button = null;
-    @property(cc.Button)
-    playWithFriendsButton: cc.Button = null;
-
-    @property(cc.Sprite)
-    playerSkin: cc.Sprite = null;
-
-    @property(cc.Label)
-    gameCoin: cc.Label = null;
-    @property(cc.Node)
-    gameLogo: cc.Node = null;
-    @property(cc.Sprite)
-    playerFace: cc.Sprite = null;
-    @property(cc.Label)
-    playerRankInFriends: cc.Label = null;
-
-
-    @property(cc.Prefab)
-    challengePlayerPrefab: cc.Prefab = null;
-    @property(cc.Node)
-    challengeRoot: cc.Node = null;
-    @property(cc.Node)
-    challengeFriendsNode: cc.Node = null;
-    @property(cc.Node)
-    playerFaceFrameNode: cc.Node = null;
-    @property(cc.Node)
-    scrollView:cc.Node=null;
-
-    @property(cc.Node)
-    screenShotRange: cc.Node = null;
-
-    enterTime: number = 0;
-
-    startButtonAction: cc.Action = null;
-
-    isSpawnedFriends: boolean = false;
+    
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() 
