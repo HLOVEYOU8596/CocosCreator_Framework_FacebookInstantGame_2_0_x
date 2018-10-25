@@ -1,1 +1,1 @@
-module.exports={Msg:{Test:0,GetTreeInfo:1,GetNodeInfo:2,Active:100,Position:101,Rotation:102,Scale:103,Anchor:104,Size:105,Color:106,Opacity:107,Skew:108}};
+window.CCInspectorPluginMsg={Msg:{Test:0,GetTreeInfo:1,GetNodeInfo:2,Active:100,Position:101,Rotation:102,Scale:103,Anchor:104,Size:105,Color:106,Opacity:107,Skew:108}};
