@@ -215,7 +215,7 @@ export default class Facebook extends cc.Component
             Facebook.LogEvent(FacebookAnalytics.shareGameFail);
             if (failedCallback)
             {
-                failedCallback();
+                failedCallback(err);
             }
         });
     }
@@ -280,7 +280,7 @@ export default class Facebook extends cc.Component
                 Logger.error('failed : ' + err.code + " :: " + err.message);
                 if (failedCallback)
                 {
-                    failedCallback();
+                    failedCallback(err);
                 }
             });
     }
@@ -296,16 +296,7 @@ export default class Facebook extends cc.Component
             .then(function ()
             {
                 Logger.log("switchAsync success");
-                Facebook.FBPlatformInfo.contextType = FBInstant.context.getType();
-                this.contextType = FBInstant.context.getType();
-                if (Facebook.FBPlatformInfo.contextType == "SOLO") 
-                {
-                    Facebook.FBPlatformInfo.contextId = FBInstant.player.getID() + "_SOLO";
-                }
-                else
-                {
-                    Facebook.FBPlatformInfo.contextId = FBInstant.context.getID();
-                }
+                Facebook.FBPlatformInfo.RefreshContextInfo();
                 if (successCallback)
                 {
                     successCallback();
@@ -315,7 +306,7 @@ export default class Facebook extends cc.Component
                 Logger.error('failed : ' + err.code + " :: " + err.message);
                 if (failedCallback)
                 {
-                    failedCallback();
+                    failedCallback(err);
                 }
             });
     }
@@ -332,16 +323,7 @@ export default class Facebook extends cc.Component
             .then(function ()
             {
                 Logger.log("createAsync success");
-                Facebook.FBPlatformInfo.contextType = FBInstant.context.getType();
-                this.contextType = FBInstant.context.getType();
-                if (Facebook.FBPlatformInfo.contextType == "SOLO") 
-                {
-                    Facebook.FBPlatformInfo.contextId = FBInstant.player.getID() + "_SOLO";
-                }
-                else
-                {
-                    Facebook.FBPlatformInfo.contextId = FBInstant.context.getID();
-                }
+                Facebook.FBPlatformInfo.RefreshContextInfo();
                 if (successCallback)
                 {
                     successCallback();
@@ -351,7 +333,7 @@ export default class Facebook extends cc.Component
                 Logger.error('failed : ' + err.code + " :: " + err.message);
                 if (failedCallback)
                 {
-                    failedCallback();
+                    failedCallback(err);
                 }
             });
     }
@@ -371,6 +353,7 @@ export default class Facebook extends cc.Component
         FBInstant.context.chooseAsync(options)
             .then(function ()
             {
+                Facebook.FBPlatformInfo.RefreshContextInfo();
                 if (successCallback)
                 {
                     successCallback();
@@ -380,7 +363,7 @@ export default class Facebook extends cc.Component
                 Logger.error('failed : ' + err.code + " :: " + err.message);
                 if (failedCallback)
                 {
-                    failedCallback();
+                    failedCallback(err);
                 }
             });
     }

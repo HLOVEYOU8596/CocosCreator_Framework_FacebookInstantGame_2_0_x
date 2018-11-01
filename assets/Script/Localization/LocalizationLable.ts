@@ -58,6 +58,10 @@ export default class LocalizationLable extends LocalizationComponent {
 
     SetTerm(key:string,argTable:any=null)
     {
+        if (this._lable==null) 
+        {
+            this.onLoad();
+        }
         this.key=key;
         if (!LocalizationManager.instance.localizationSource.ContainsKey(key)) 
         {

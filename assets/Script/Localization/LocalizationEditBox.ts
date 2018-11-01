@@ -55,6 +55,10 @@ export default class LocalizationEditBox extends LocalizationComponent {
 
     SetTerm(key:string,argTable:any=null)
     {
+        if (this._editBox==null) 
+        {
+            this.onLoad();
+        }
         this.key=key;
         if (!LocalizationManager.instance.localizationSource.ContainsKey(key)) 
         {

@@ -54,6 +54,10 @@ export default class LocalizationImg extends LocalizationComponent {
 
     SetTerm(key:string,argTable:any=null)
     {
+        if (this._sprite==null) 
+        {
+            this.onLoad();
+        }
         this.key=key;
         if (!LocalizationManager.instance.localizationSource.ContainsKey(key)) 
         {

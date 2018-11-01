@@ -36,6 +36,8 @@ export default class FacebookPlatform {
     lanCode: string = "";
     platform: string = "";
     SDKVersion:string="";
+    entryPoint:string="";
+    entryPointData:any=null;
     
     // LIFE-CYCLE CALLBACKS:
 
@@ -67,13 +69,30 @@ export default class FacebookPlatform {
         this.lanCode=this.local.substr(0,2);
         this.platform=FBInstant.getPlatform();
         this.SDKVersion=FBInstant.getSDKVersion();
+        this.entryPoint=FBInstant.getEntryPointAsync();
+        this.entryPointData= FBInstant.getEntryPointData();
         Logger.log("contextType:"+this.contextType);
         Logger.log("contextId:"+this.contextId);
         Logger.log("local:"+this.local);
         Logger.log("lanCode:"+this.lanCode);
         Logger.log("SDKVersion:"+this.SDKVersion);
+        Logger.log("entryPoint:"+this.entryPoint);
+        Logger.log("entryPointData:"+JSON.stringify(this.entryPointData));
 
         //发送消息
         MsgSystem.GetInstance().PostMsg(MsgDefine.contextInfoLoadFinish);
+    }
+
+    RefreshContextInfo()
+    {
+        this.contextType=FBInstant.context.getType();
+        if (this.contextType=="SOLO") 
+        {
+            this.contextId=FBInstant.player.getID()+"_SOLO";    
+        }
+        else
+        {
+            this.contextId=FBInstant.context.getID();
+        }
     }
 }
