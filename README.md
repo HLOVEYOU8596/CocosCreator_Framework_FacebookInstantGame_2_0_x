@@ -1,5 +1,8 @@
 # CocosCreator_Framework_FacebookInstantGame_2_0_x
 
+20181119
+项目使用CocosCreator 2.0.5 版本引擎
+
 使用 CocosCreator 开发 Facebook Instant Game 的个人游戏框架
 
 第三方库

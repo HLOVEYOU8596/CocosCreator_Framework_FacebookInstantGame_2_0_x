@@ -98,7 +98,7 @@ export default class UIManager extends cc.Component
 
         if (uiPanelScript.isPreload == true)
         {
-            uiPanel.parent = this.uiRoot;
+            uiPanel.setParent(this.uiRoot);
             uiPanel.active = false;
             this._panelDict[uiPanelScript.panelType] = uiPanelScript;
             //this._panelDict[uiPanelScript.panelType].SetActive(false);
@@ -112,9 +112,9 @@ export default class UIManager extends cc.Component
         this._panelIndex++;
 
         //加载完成后发送完成消息
-        if (this._panelIndex>=PanelType.PanelCount) 
+        if (this._panelIndex >= PanelType.PanelCount) 
         {
-            MsgSystem.GetInstance().PostMsg(MsgDefine.preLoadUIPanelFinish);    
+            MsgSystem.GetInstance().PostMsg(MsgDefine.preLoadUIPanelFinish);
         }
     }
 
@@ -128,7 +128,7 @@ export default class UIManager extends cc.Component
             {
                 console.error("Can't find panel " + type);
             }
-            uiPanel.parent = this.uiRoot;
+            uiPanel.setParent(this.uiRoot);
             this._panelDict[type] = uiPanel.getComponent(PanelBase);
             panelTemp = this._panelDict[type];
         }
@@ -253,7 +253,7 @@ export default class UIManager extends cc.Component
     // }
 
 
-    ShowTipsWindow(tipsWindowStyle, term: string, arg:Array<any> = null,
+    ShowTipsWindow(tipsWindowStyle, term: string, arg: Array<any> = null,
         okCallback: Function = null,
         cancelCallback: Function = null,
         confirmCallback: Function = null,

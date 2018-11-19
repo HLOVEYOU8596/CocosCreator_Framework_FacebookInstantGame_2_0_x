@@ -9,23 +9,24 @@
 //  - [English] http://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 
-export  class ScreenShot {
+export class ScreenShot
+{
 
     /**
      * 截图
      * @param rangeImg 表示截图范围的节点
      * @returns {} base64字符串
      */
-    static Shot(rangeImg:cc.Node):string
+    static Shot(rangeImg: cc.Node): string
     {
-        let width=rangeImg.width;
-        let height=rangeImg.height;
+        let width = rangeImg.width;
+        let height = rangeImg.height;
 
         let node = new cc.Node();
-        node.parent = rangeImg;
+        node.setParent(rangeImg);
         let camera = node.addComponent(cc.Camera);
-        node.x=0;
-        node.y=0;
+        node.x = 0;
+        node.y = 0;
 
         // 设置你想要的截图内容的 cullingMask
         camera.cullingMask = 0xffffffff;
@@ -34,7 +35,7 @@ export  class ScreenShot {
         let texture = new cc.RenderTexture();
         let gl = cc.game._renderContext;
         // 如果截图内容中不包含 Mask 组件，可以不用传递第三个参数
-        texture.initWithSize(width,height,gl.STENCIL_INDEX8);
+        texture.initWithSize(width, height, gl.STENCIL_INDEX8);
         camera.targetTexture = texture;
 
         // 渲染一次摄像机，即更新一次内容到 RenderTexture 中
@@ -54,10 +55,10 @@ export  class ScreenShot {
         {
             let srow = height - 1 - row;
             let imageData = ctx.createImageData(width, 1);
-            let start = srow*width*4;
+            let start = srow * width * 4;
             for (let i = 0; i < rowBytes; i++) 
             {
-                imageData.data[i] = data[start+i];
+                imageData.data[i] = data[start + i];
             }
 
             ctx.putImageData(imageData, 0, row);
